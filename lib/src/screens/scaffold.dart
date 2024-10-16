@@ -1,7 +1,3 @@
-// Copyright 2021, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'package:adaptive_navigation/adaptive_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -28,6 +24,7 @@ class BookstoreScaffold extends StatelessWidget {
           if (idx == 0) goRouter.go('/books/popular');
           if (idx == 1) goRouter.go('/authors');
           if (idx == 2) goRouter.go('/settings');
+          if (idx == 3) goRouter.go('/add-book');
         },
         destinations: const [
           AdaptiveScaffoldDestination(
@@ -42,7 +39,18 @@ class BookstoreScaffold extends StatelessWidget {
             title: 'Settings',
             icon: Icons.settings,
           ),
+          AdaptiveScaffoldDestination(
+            title: 'Adicionar Livros',
+            icon: Icons.library_add,
+          ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          goRouter.go('/add-book');
+        },
+        child: const Icon(Icons.add),
+        tooltip: 'Add a new book',
       ),
     );
   }

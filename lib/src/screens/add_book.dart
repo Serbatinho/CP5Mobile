@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import '../data.dart';
 
 class AddBookPage extends StatefulWidget {
-  final List<Author> authors;
   final ValueChanged<Book> onBookAdded;
 
   const AddBookPage({
-    required this.authors,
     required this.onBookAdded,
     super.key,
   });
@@ -22,6 +20,13 @@ class _AddBookPageState extends State<AddBookPage> {
   final TextEditingController _genreController = TextEditingController();
 
   Author? _selectedAuthor;
+
+  // Lista de autores definida diretamente dentro da página
+  final List<Author> _authors = [
+    Author(1, 'Ursula K. Le Guin'),
+    Author(2, 'Ada Palmer'),
+    Author(3, 'Octavia E. Butler'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +70,7 @@ class _AddBookPageState extends State<AddBookPage> {
                 border: OutlineInputBorder(),
               ),
               value: _selectedAuthor,
-              items: widget.authors.map((author) {
+              items: _authors.map((author) {
                 return DropdownMenuItem<Author>(
                   value: author,
                   child: Text(author.name),

@@ -1,3 +1,4 @@
+import 'package:bookstore/src/screens/add_book.dart';
 import 'package:bookstore/src/screens/author_details.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -129,6 +130,27 @@ class _BookstoreState extends State<Bookstore> {
                     },
                   ),
                 ],
+              ),
+              GoRoute(
+                path: '/add-book',
+                pageBuilder: (context, state) {
+                  return FadeTransitionPage<dynamic>(
+                    key: state.pageKey,
+                    child: AddBookPage(
+                      onBookAdded: (Book newBook) {
+                        setState(() {
+                          libraryInstance.addBook(
+                            title: newBook.title,
+                            authorName: newBook.author.name,
+                            isPopular: newBook.isPopular,
+                            isNew: newBook.isNew,
+                          );
+                        });
+                        GoRouter.of(context).go('/books/all');
+                      },
+                    ),
+                  );
+                },
               ),
               GoRoute(
                 path: '/books/popular',

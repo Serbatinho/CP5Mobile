@@ -36,7 +36,6 @@ class BookList extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => AddBookPage(
-                authors: authors,
                 onBookAdded: (newBook) {
                   onBookAdded(newBook);
                 },
